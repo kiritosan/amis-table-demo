@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMIS 表格示例</title>
+    <link rel="stylesheet" href="https://unpkg.com/amis@3.6.3/sdk/sdk.css" />
+    <link rel="stylesheet" href="https://unpkg.com/amis@3.6.3/sdk/helper.css" />
+    <link rel="stylesheet" href="https://unpkg.com/amis@3.6.3/sdk/iconfont.css" />
+    <style>
+        html, body, .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="app-wrapper"></div>
+    <script src="https://unpkg.com/amis@3.6.3/sdk/sdk.js"></script>
+    <script>
+        (function() {
+            let amis = amisRequire('amis/embed');
+            
+            // // 模拟数据
+            // const mockData = {
+            //     items: [
+            //         { id: 1, projectName: '钢铁煤三期工业', organizationName: '材料组织2', completionDate: '2023-04', status: '暂存', approvalStatus: '/', designerCount: 0, builderCount: 0, reviewerCount: 3, designUnit: '西南设计', approvalUnit: '分包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '张三' },
+            //         { id: 2, projectName: '钢铁煤三期工业', organizationName: '材料组织材料组织2', completionDate: '2024-01', status: '已提交', approvalStatus: '未审批', designerCount: 6720, builderCount: 0, reviewerCount: 2, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '李四' },
+            //         { id: 3, projectName: '钢铁煤二期工业', organizationName: '材料组织材料组织', completionDate: '2024-01', status: '已提交', approvalStatus: '未审批', designerCount: 0, builderCount: 0, reviewerCount: 1, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '王五' },
+            //         { id: 4, projectName: '钢铁煤三期工业', organizationName: '材料组织2', completionDate: '2023-01', status: '审核通过', approvalStatus: '已审批', designerCount: 0, builderCount: 0, reviewerCount: 2, designUnit: '西南设计', approvalUnit: '分包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '赵六' },
+            //         { id: 5, projectName: '钢铁煤三期工业', organizationName: '材料组织材料组织2', completionDate: '2023-09', status: '暂存', approvalStatus: '/', designerCount: 0, builderCount: 0, reviewerCount: 5, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '钱七' },
+            //         { id: 6, projectName: '钢铁煤三期工业', organizationName: '材料组织材料组织2', completionDate: '2023-01', status: '已提交', approvalStatus: '未审批', designerCount: 590, builderCount: 0, reviewerCount: 7, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '孙八' },
+            //         { id: 7, projectName: '钢铁煤二期工业', organizationName: '材料组织材料组织', completionDate: '2023-01', status: '审核通过', approvalStatus: '已审批', designerCount: 0, builderCount: 0, reviewerCount: 5, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '周九' },
+            //         { id: 8, projectName: '钢铁煤三期工业', organizationName: '材料组织材料组织2', completionDate: '2023-03', status: '审核通过', approvalStatus: '已审批', designerCount: 0, builderCount: 0, reviewerCount: 5, designUnit: '西南设计', approvalUnit: '分包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '吴十' },
+            //         { id: 9, projectName: '钢铁煤三期工业', organizationName: '材料组织材料组织2', completionDate: '2023-03', status: '审核通过', approvalStatus: '未通过', designerCount: 0, builderCount: 0, reviewerCount: 5, designUnit: '西南设计', approvalUnit: '分包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '郑十一' },
+            //         { id: 10, projectName: '钢铁煤三期工业', organizationName: '材料组织2', completionDate: '2023-01', status: '暂存', approvalStatus: '/', designerCount: 0, builderCount: 0, reviewerCount: 1, designUnit: '西南设计', approvalUnit: '总包单位', productType: '基础设施', reportDate: '2023-05-16', approver: '王十二' }
+            //     ],
+            //     total: 10
+            // };
+
+            // AMIS 配置
+            const schema = {
+                type: 'page',
+                title: '',
+                body: [
+                    {
+                        type: 'form',
+                        title: '',
+                        mode: 'inline',
+                        wrapWithPanel: false,
+                        className: 'mb-3',
+                        submitOnChange: true,
+                        target: 'table1',
+                        body: [
+                            {
+                                type: 'input-text',
+                                name: 'keywords',
+                                placeholder: '关键字',
+                                size: 'sm',
+                                className: 'w-auto'
+                            },
+                            {
+                                type: 'select',
+                                name: 'projectType',
+                                placeholder: '项目分类',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '项目1', value: '1' },
+                                    { label: '项目2', value: '2' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'recordStatus',
+                                placeholder: '单据状态',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '暂存', value: '暂存' },
+                                    { label: '已提交', value: '已提交' },
+                                    { label: '审核通过', value: '审核通过' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'payStatus',
+                                placeholder: '发放状态',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '未发放', value: '未发放' },
+                                    { label: '已发放', value: '已发放' },
+                                    { label: '发放失败', value: '发放失败' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'bankAccountType',
+                                placeholder: '账户类型',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '对公', value: '对公' },
+                                    { label: '对私', value: '对私' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'bankName',
+                                placeholder: '银行名称',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '总包单位', value: '总包单位' },
+                                    { label: '分包单位', value: '分包单位' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'payType',
+                                placeholder: '支付方式',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '银行转账', value: '银行转账' },
+                                    { label: '现金', value: '现金' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'laborReviewStatus',
+                                placeholder: '审核状态',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '未审核', value: '未审核' },
+                                    { label: '已审核', value: '已审核' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'exchangeStatus',
+                                placeholder: '交换状态',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '-1' },
+                                    { label: '未交换', value: '0' },
+                                    { label: '交换中', value: '1' },
+                                    { label: '交换成功', value: '2' },
+                                    { label: '交换失败', value: '3' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'year',
+                                placeholder: '年份',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '2023', value: '2023' },
+                                    { label: '2024', value: '2024' }
+                                ]
+                            },
+                            {
+                                type: 'select',
+                                name: 'month',
+                                placeholder: '月份',
+                                size: 'sm',
+                                className: 'w-auto',
+                                options: [
+                                    { label: '全部', value: '' },
+                                    { label: '01', value: '01' },
+                                    { label: '02', value: '02' },
+                                    { label: '03', value: '03' },
+                                    { label: '04', value: '04' },
+                                    { label: '05', value: '05' },
+                                    { label: '06', value: '06' },
+                                    { label: '07', value: '07' },
+                                    { label: '08', value: '08' },
+                                    { label: '09', value: '09' },
+                                    { label: '10', value: '10' },
+                                    { label: '11', value: '11' },
+                                    { label: '12', value: '12' }
+                                ]
+                            }
+                        ],
+                        actions: [
+                            {
+                                type: 'reset',
+                                label: '重置',
+                                size: 'sm'
+                            },
+                            {
+                                type: 'submit',
+                                label: '搜索',
+                                level: 'primary',
+                                size: 'sm'
+                            }
+                        ]
+                    },
+                    {
+                        type: 'crud',
+                        syncLocation: false,
+                        className: 'mt-2',
+                        id: 'table1',
+                        api: {
+                            method: 'post',
+                            url: '/wageRecord/page',
+                            data: {
+                                page: '${page}',
+                                size: '${perPage}',
+                                queryDTO: {
+                                    sendTime: '',
+                                    keyWords: '${keywords}',
+                                    recordStatus: '${recordStatus}',
+                                    payStatus: '${payStatus}',
+                                    bankAccountType: '${bankAccountType}',
+                                    bankName: '${bankName}',
+                                    payType: '${payType}',
+                                    queryType: 1,
+                                    submitEnd: '',
+                                    exchangeStatus: '${exchangeStatus|default:-1}',
+                                    laborReviewStatus: '${laborReviewStatus}',
+                                    projectContractId: -1,
+                                    projectId: 979273655681024,
+                                    year: '${year}',
+                                    month: '${month}'
+                                }
+                            },
+                            adaptor: function (payload) {
+                                console.log('API Response:', payload);
+                                if (!payload || !payload.data) {
+                                    return { status: 0, msg: '', data: mockData };
+                                }
+                                // 确保返回的数据格式符合AMIS的要求
+                                return {
+                                    status: 0,
+                                    msg: '',
+                                    data: {
+                                        items: payload.data.records,
+                                        total: payload.data.total
+                                    }
+                                };
+                            },
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'accept': 'application/json, text/plain, */*'
+                            }
+                        },
+                        headerToolbar: [],
+                        footerToolbar: [
+                            {
+                                type: 'pagination',
+                                layout: ['perPage', 'pager', 'total'],
+                                perPageAvailable: [10, 20, 50, 100],
+                                showPerPage: true,
+                                perPage: 10
+                            }
+                        ],
+                        columns: [
+                            {
+                                name: 'id',
+                                label: '序号',
+                                width: 50
+                            },
+                            {
+                                name: 'companyName',
+                                label: '企业名字',
+                                width: 150
+                            },
+                            {
+                                name: 'teamName',
+                                label: '队伍名称',
+                                width: 150
+                            },
+                            {
+                                name: 'groupName',
+                                label: '班组名称',
+                                width: 120
+                            },
+                            {
+                                name: 'month',
+                                label: '发放月份',
+                                width: 80
+                            },
+                            {
+                                name: 'recordStatus',
+                                label: '单据状态',
+                                width: 100,
+                                type: 'tpl',
+                                tpl: "<% if (data.recordStatus === '暂存') { %>\n                                    <span class=\"label label-info\">暂存</span>\n                                <% } else if (data.recordStatus === '已提交') { %>\n                                    <span class=\"label label-primary\" style=\"background-color: #dbe2fb; color: #6678b1;\">已提交</span>\n                                <% } else if (data.recordStatus === '审核通过') { %>\n                                    <span class=\"label label-success\" style=\"background-color: #d8f5e3; color: #52c41a;\">审核通过</span>\n                                <% } %>"
+                            },
+                            {
+                                name: 'payStatus',
+                                label: '发放状态',
+                                width: 100,
+                                type: 'tpl',
+                                tpl: "<% if (data.payStatus === '/') { %>\n                                    <span>/</span>\n                                <% } else if (data.payStatus === '未发放') { %>\n                                    <span class=\"label label-warning\" style=\"background-color: #fff; color: #fa8c16; border: 1px solid #fa8c16\">未发放</span>\n                                <% } else if (data.payStatus === '已发放') { %>\n                                    <span class=\"label label-success\" style=\"background-color: #d8f5e3; color: #52c41a;\">已发放</span>\n                                <% } else if (data.payStatus === '发放失败') { %>\n                                    <span class=\"label label-danger\" style=\"background-color: #fff; color: #ff4d4f; border: 1px solid #ff4d4f\">发放失败</span>\n                                <% } %>"
+                            },
+                            {
+                                name: 'expectedSalary',
+                                label: '应发工资',
+                                width: 100
+                            },
+                            {
+                                name: 'actualSalary',
+                                label: '发放工资',
+                                width: 100
+                            },
+                            {
+                                name: 'employeeCount',
+                                label: '发放人数',
+                                width: 80
+                            },
+                            {
+                                name: 'payType',
+                                label: '发放方式',
+                                width: 80
+                            },
+                            {
+                                name: 'bankAccountType',
+                                label: '账户类型',
+                                width: 80
+                            },
+                            {
+                                name: 'bankName',
+                                label: '银行名称',
+                                width: 100
+                            },
+                            {
+                                name: 'reportType',
+                                label: '填报方式',
+                                width: 80
+                            },
+                            {
+                                name: 'documentNumber',
+                                label: '单据号',
+                                width: 120
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            // 渲染页面
+            const app = amis.embed('#root', schema, {
+                // data: mockData
+            });
+        })();
+    </script>
+</body>
+</html>
