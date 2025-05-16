@@ -63,137 +63,149 @@
                                 className: 'w-auto'
                             },
                             {
-                                type: 'select',
-                                name: 'projectType',
-                                placeholder: '项目分类',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '项目1', value: '1' },
-                                    { label: '项目2', value: '2' }
+                                type: 'flex',
+                                justify: 'start',
+                                items: [
+                                    {
+                                        type: 'tpl',
+                                        tpl: '发放月份',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'input-month',
+                                        name: 'yearMonth',
+                                        placeholder: '选择年月',
+                                        format: 'YYYY-MM',
+                                        value: '',
+                                        clearable: true,
+                                        size: 'sm',
+                                        className: 'w-auto mr-2'
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '单据状态',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'recordStatus',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '暂存', value: '暂存' },
+                                            { label: '已提交', value: '已提交' },
+                                            { label: '审核通过', value: '审核通过' }
+                                        ]
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '发放状态',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'payStatus',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '未发放', value: '未发放' },
+                                            { label: '已发放', value: '已发放' },
+                                            { label: '发放失败', value: '发放失败' }
+                                        ]
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '账户类型',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'bankAccountType',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '对公', value: '对公' },
+                                            { label: '对私', value: '对私' }
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                type: 'select',
-                                name: 'recordStatus',
-                                placeholder: '单据状态',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '暂存', value: '暂存' },
-                                    { label: '已提交', value: '已提交' },
-                                    { label: '审核通过', value: '审核通过' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'payStatus',
-                                placeholder: '发放状态',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '未发放', value: '未发放' },
-                                    { label: '已发放', value: '已发放' },
-                                    { label: '发放失败', value: '发放失败' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'bankAccountType',
-                                placeholder: '账户类型',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '对公', value: '对公' },
-                                    { label: '对私', value: '对私' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'bankName',
-                                placeholder: '银行名称',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '总包单位', value: '总包单位' },
-                                    { label: '分包单位', value: '分包单位' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'payType',
-                                placeholder: '支付方式',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '银行转账', value: '银行转账' },
-                                    { label: '现金', value: '现金' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'laborReviewStatus',
-                                placeholder: '审核状态',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '未审核', value: '未审核' },
-                                    { label: '已审核', value: '已审核' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'exchangeStatus',
-                                placeholder: '交换状态',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '-1' },
-                                    { label: '未交换', value: '0' },
-                                    { label: '交换中', value: '1' },
-                                    { label: '交换成功', value: '2' },
-                                    { label: '交换失败', value: '3' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'year',
-                                placeholder: '年份',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '2023', value: '2023' },
-                                    { label: '2024', value: '2024' }
-                                ]
-                            },
-                            {
-                                type: 'select',
-                                name: 'month',
-                                placeholder: '月份',
-                                size: 'sm',
-                                className: 'w-auto',
-                                options: [
-                                    { label: '全部', value: '' },
-                                    { label: '01', value: '01' },
-                                    { label: '02', value: '02' },
-                                    { label: '03', value: '03' },
-                                    { label: '04', value: '04' },
-                                    { label: '05', value: '05' },
-                                    { label: '06', value: '06' },
-                                    { label: '07', value: '07' },
-                                    { label: '08', value: '08' },
-                                    { label: '09', value: '09' },
-                                    { label: '10', value: '10' },
-                                    { label: '11', value: '11' },
-                                    { label: '12', value: '12' }
+                                type: 'flex',
+                                justify: 'start',
+                                items: [
+                                    {
+                                        type: 'tpl',
+                                        tpl: '银行名称',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'bankName',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '建设银行', value: '建设银行' },
+                                            { label: '工商银行', value: '工商银行' },
+                                            { label: '农业银行', value: '农业银行' },
+                                            { label: '中国银行', value: '中国银行' },
+                                            { label: '交通银行', value: '交通银行' }
+                                        ]
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '发放方式',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'payType',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '银行转账', value: '银行转账' },
+                                            { label: '现金', value: '现金' }
+                                        ]
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '填报方式',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'reportType',
+                                        size: 'sm',
+                                        className: 'w-auto mr-2',
+                                        options: [
+                                            { label: '全部', value: '' },
+                                            { label: '手工填报', value: '手工填报' },
+                                            { label: '系统导入', value: '系统导入' }
+                                        ]
+                                    },
+                                    {
+                                        type: 'tpl',
+                                        tpl: '人员换发状态',
+                                        className: 'text-sm mr-1'
+                                    },
+                                    {
+                                        type: 'select',
+                                        name: 'exchangeStatus',
+                                        size: 'sm',
+                                        className: 'w-auto',
+                                        options: [
+                                            { label: '全部', value: '-1' },
+                                            { label: '未交换', value: '0' },
+                                            { label: '交换中', value: '1' },
+                                            { label: '交换成功', value: '2' },
+                                            { label: '交换失败', value: '3' }
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -236,24 +248,46 @@
                                     laborReviewStatus: '${laborReviewStatus}',
                                     projectContractId: -1,
                                     projectId: 979273655681024,
+                                    yearMonth: '${yearMonth}',
                                     year: '${year}',
-                                    month: '${month}'
+                                    month: '${month}',
+                                    reportType: '${reportType}'
                                 }
                             },
                             adaptor: function (payload) {
-                                console.log('API Response:', payload);
-                                if (!payload || !payload.data) {
-                                    return { status: 0, msg: '', data: mockData };
-                                }
-                                // 确保返回的数据格式符合AMIS的要求
-                                return {
-                                    status: 0,
-                                    msg: '',
-                                    data: {
+                                console.log('API Response (raw):', payload);
+                                console.log('API Response (type):', typeof payload);
+                                
+                                try {
+                                    // 如果是字符串，尝试解析为JSON
+                                    if (typeof payload === 'string') {
+                                        payload = JSON.parse(payload);
+                                        console.log('Parsed payload:', payload);
+                                    }
+                                    
+                                    if (!payload || !payload.data) {
+                                        console.log('No valid payload data, using mock data');
+                                        return { status: 0, msg: '', data: { items: [], total: 0 } };
+                                    }
+                                    
+                                    // 确保返回的数据格式符合AMIS的要求
+                                    console.log('Returning formatted data:', {
                                         items: payload.data.records,
                                         total: payload.data.total
-                                    }
-                                };
+                                    });
+                                    
+                                    return {
+                                        status: 0,
+                                        msg: '',
+                                        data: {
+                                            items: payload.data.records,
+                                            total: payload.data.total
+                                        }
+                                    };
+                                } catch (error) {
+                                    console.error('Error processing API response:', error);
+                                    return { status: 0, msg: '', data: { items: [], total: 0 } };
+                                }
                             },
                             headers: {
                                 'Content-Type': 'application/json',
